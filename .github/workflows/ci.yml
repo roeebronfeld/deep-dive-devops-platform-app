@@ -1,0 +1,37 @@
+name: CI
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install backend dependencies
+        run: pip install -r backend/requirements.txt
+
+      - name: Validate backend Python syntax
+        run: python -m py_compile backend/app/main.py
+
+      - name: Validate Docker Compose configuration
+        run: docker compose config
+
+      - name: Build backend Docker image
+        run: docker build -t deep-dive-backend-ci ./backend
+
+      - name: Build frontend Docker image
+        run: docker build -t deep-dive-frontend-ci ./frontend
