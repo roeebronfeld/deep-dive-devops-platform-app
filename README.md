@@ -87,10 +87,39 @@ curl http://localhost:8080/health
 
 You can also open `http://localhost:8080`.
 
+## Ingress
+
+Enable the Minikube nginx ingress addon:
+
+```bash
+minikube addons enable ingress
+```
+
+Install or upgrade the chart with ingress enabled:
+
+```bash
+helm upgrade --install deep-dive-devops-platform ./helm/deep-dive-devops-platform \
+  --set ingress.enabled=true
+```
+
+Check the ingress resource:
+
+```bash
+kubectl get ingress
+```
+
+Test it locally with the Minikube IP and the configured host:
+
+```bash
+curl http://$(minikube ip) -H "Host: deep-dive.local"
+```
+
+If you want to open it in a browser, add `deep-dive.local` to your hosts file pointing to the Minikube IP.
+
 ## Notes
 
 - PostgreSQL is included in Docker Compose but is not used by the backend yet
 - Kubernetes currently includes only the backend and frontend
 - There is no real database integration yet
-- There is no Kubernetes ingress yet
+- Kubernetes ingress is optional and disabled by default in the Helm chart
 - CI is intentionally minimal and only validates basic syntax, Compose config, and Docker builds

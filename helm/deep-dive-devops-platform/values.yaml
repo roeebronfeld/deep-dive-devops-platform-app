@@ -15,3 +15,9 @@ frontend:
     pullPolicy: IfNotPresent
   service:
     port: 80
+
+ingress:
+  enabled: false
+  className: nginx
+  host: deep-dive.local
+  path: /
