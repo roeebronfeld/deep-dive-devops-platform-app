@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # deep-dive-devops-platform-app
 
 Minimal first backend and frontend scaffold for a future DevOps platform app.
@@ -39,3 +40,6 @@ The backend will be available at `http://localhost:8000`.
 - The frontend calls the backend directly from the browser for local development.
 - There is no Kubernetes integration yet.
 - There is no CI/CD setup yet.
+=======
+# deep-dive-devops-platform-app
+>>>>>>> origin/main
