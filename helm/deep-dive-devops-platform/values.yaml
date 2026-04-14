@@ -1,5 +1,5 @@
 backend:
-  replicaCount: 4
+  replicaCount: 2
   image:
     repository: deep-dive-devops-platform-app-backend
     tag: latest
